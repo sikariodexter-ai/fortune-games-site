@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - Fortune Games</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-auth-state="out">
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Bem vindo de volta!</h2>
+            <p>Conecte-se para acompanhar seus prêmios, depósitos e muito mais.</p>
+            <form id="loginForm">
+                <input id="loginEmail" name="email" type="email" placeholder="Email" required>
+                <div class="password-field">
+                    <input id="loginPassword" name="password" type="password" placeholder="Digite sua senha" required>
+                    <span class="password-toggle">Mostrar</span>
+                </div>
+                <button id="loginSubmit" type="submit">Entrar</button>
+            </form>
+            <p class="modal-footer">Ainda não tem uma conta? <a href="#" onclick="openRegisterModal()" data-action="open-register" data-auth="out"> <span id="registerBtn">Registrar</span> </a></p>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Crie sua conta!</h2>
+            <p>Comece a concorrer a prêmios hoje!</p>
+            <form id="registerForm">
+                <input id="registerName" name="name" type="text" placeholder="Nome Completo" required>
+                <input id="registerEmail" name="email" type="email" placeholder="Email" required>
+                <input id="registerPhone" name="phone" type="tel" placeholder="Telefone" required>
+                <div class="password-field">
+                    <input id="registerPassword" name="password" type="password" placeholder="Escolha uma senha" required>
+                    <span class="password-toggle">Mostrar</span>
+                </div>
+                <button id="registerSubmit" type="submit">Criar</button>
+            </form>
+            <p class="modal-footer">Já tem uma conta? <a href="#" onclick="openLoginModal()" data-action="open-login" data-auth="out"><span id="loginBtn">Entrar</span></a></p>
+        </div>
+    </div>
+
+    <main>
+        <!-- Header -->
+        <header class="header">
+<div id="walletArea" class="wallet-area" style="display:none"></div>
+            <div class="container">
+                <div class="logo">
+                    <a href="/">
+                        <i class="fas fa-gem"></i>
+                        <span>Fortune Games</span>
+                    </a>
+                </div>
+                <nav class="nav-links">
+                    <a href="/" class="active">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <a href="/raspadinhas">
+                        <i class="fas fa-ticket-alt"></i>
+                        Raspadinhas
+                    </a>
+                    <a href="/indique-e-ganhe">
+                        <i class="fas fa-users"></i>
+                        Indique e Ganhe
+                    </a>
+                </nav>
+                <div class="auth-buttons">
+                    <button onclick="openLoginModal()" data-action="open-login" data-auth="out" class="btn-secondary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Entrar
+                    </button>
+                    <button onclick="openRegisterModal()" data-action="open-register" data-auth="out" class="btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Registrar
+                    </button>
+                </div>
+            </div>
+        <div id="userArea" style="display:none" class="user-area" data-auth="in"></div></header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="swiper hero-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="hero-content">
+                            <div class="hero-text">
+                                <h1>Ganhe até <span class="highlight">R$ 60.000</span> com apenas 1 clique!</h1>
+                                <p>Descubra como milhares estão lucrando com poucos cliques. Jogos seguros, prêmios reais.</p>
+                                <button class="btn-hero">
+                                    <i class="fas fa-play"></i>
+                                    Começar Agora
+                                </button>
+                            </div>
+                            <div class="hero-visual">
+                                <div class="floating-card">
+                                    <i class="fas fa-coins"></i>
+                                    <span>R$ 1.000</span>
+                                </div>
+                                <div class="floating-card delay-1">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>iPhone 15</span>
+                                </div>
+                                <div class="floating-card delay-2">
+                                    <i class="fas fa-car"></i>
+                                    <span>Carro 0km</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="hero-content">
+                            <div class="hero-text">
+                                <h1>Prêmios <span class="highlight">Instantâneos</span> e Seguros!</h1>
+                                <p>Pagamentos rápidos, jogos certificados e milhares de ganhadores todos os dias.</p>
+                                <button class="btn-hero">
+                                    <i class="fas fa-trophy"></i>
+                                    Ver Prêmios
+                                </button>
+                            </div>
+                            <div class="hero-visual">
+                                <div class="floating-card">
+                                    <i class="fas fa-gift"></i>
+                                    <span>Prêmios</span>
+                                </div>
+                                <div class="floating-card delay-1">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Instantâneo</span>
+                                </div>
+                                <div class="floating-card delay-2">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Seguro</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next hero-next-button"></div>
+                <div class="swiper-button-prev hero-prev-button"></div>
+            </div>
+        </section>
+
+        <!-- Winners Ticker -->
+        <section class="winners-ticker">
+            <div class="container">
+                <div class="ticker-content">
+                    <i class="fas fa-trophy"></i>
+                    <span class="ticker-label">Ganhadores Recentes:</span>
+                    <div class="swiper winners-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="winner-item">
+                                    <span class="winner-name">Jonas Sa******</span>
+                                    <span class="winner-prize">Chinelo Havaianas branco</span>
+                                    <span class="winner-value">R$ 35,00</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="winner-item">
+                                    <span class="winner-name">Marília Co******</span>
+                                    <span class="winner-prize">Smartphone modelo C2 NK109</span>
+                                    <span class="winner-value">R$ 800,00</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="winner-item">
+                                    <span class="winner-name">Jasmin Me****</span>
+                                    <span class="winner-prize">500 Reais</span>
+                                    <span class="winner-value">R$ 500,00</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="winner-item">
+                                    <span class="winner-name">Ricardo Go***</span>
+                                    <span class="winner-prize">Moto Honda Pop 110i</span>
+                                    <span class="winner-value">R$ 11.500,00</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="winner-item">
+                                    <span class="winner-name">Cezar Qu******</span>
+                                    <span class="winner-prize">Caixa de som JBL Boombox 3</span>
+                                    <span class="winner-value">R$ 2.500,00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="games-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-fire"></i>
+                        Destaques
+                    </h2>
+                    <a href="#" class="view-more">
+                        Ver mais
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="games-grid">
+                    <!-- Centavo da Sorte -->
+                    <div class="game-card" data-name="Jogo" data-price="1.00" data-image="images/centavo-da-sorte.png">
+                        <div class="game-image">
+                            <img src="images/centavo-da-sorte.png" alt="Centavo da Sorte">
+                            <div class="game-badge">
+                                <span>PIX NA HORA!</span>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3>Centavo da Sorte</h3>
+                            <p class="game-description">PRÊMIOS DE ATÉ R$ 1.000,00</p>
+                            <div class="game-price">
+                                <span class="price-label">Jogar</span>
+                                <span class="price-value">R$ 0,50</span>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                    Jogar
+                                </button>
+                                <button class="btn-prizes">
+                                    <i class="fas fa-trophy"></i>
+                                    VER PRÊMIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sorte Instantânea -->
+                    <div class="game-card" data-name="Jogo" data-price="1.00" data-image="images/sorte-instantanea.png">
+                        <div class="game-image">
+                            <img src="images/sorte-instantanea.png" alt="Sorte Instantânea">
+                            <div class="game-badge">
+                                <span>ACHE 3 IGUAIS E GANHE NA HORA</span>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3>Sorte Instantânea</h3>
+                            <p class="game-description">PRÊMIOS DE ATÉ R$ 2.500,00</p>
+                            <div class="game-price">
+                                <span class="price-label">Jogar</span>
+                                <span class="price-value">R$ 1,00</span>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                    Jogar
+                                </button>
+                                <button class="btn-prizes">
+                                    <i class="fas fa-trophy"></i>
+                                    VER PRÊMIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raspadinha Suprema -->
+                    <div class="game-card" data-name="Jogo" data-price="1.00" data-image="images/raspadinha-suprema.png">
+                        <div class="game-image">
+                            <img src="images/raspadinha-suprema.png" alt="Raspadinha Suprema">
+                            <div class="game-badge">
+                                <span>ACHE 3 IGUAIS E GANHE NA HORA</span>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3>Raspadinha Suprema</h3>
+                            <p class="game-description">PRÊMIOS DE ATÉ R$ 5.000,00</p>
+                            <div class="game-price">
+                                <span class="price-label">Jogar</span>
+                                <span class="price-value">R$ 2,50</span>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                    Jogar
+                                </button>
+                                <button class="btn-prizes">
+                                    <i class="fas fa-trophy"></i>
+                                    VER PRÊMIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raspa Relâmpago -->
+                    <div class="game-card" data-name="Jogo" data-price="1.00" data-image="images/raspa-relampago.png">
+                        <div class="game-image">
+                            <img src="images/raspa-relampago.png" alt="Raspa Relâmpago">
+                            <div class="game-badge">
+                                <span>ACHE 3 IGUAIS E GANHE NA HORA</span>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3>Raspa Relâmpago</h3>
+                            <p class="game-description">PRÊMIOS DE ATÉ R$ 15.000,00</p>
+                            <div class="game-price">
+                                <span class="price-label">Jogar</span>
+                                <span class="price-value">R$ 5,00</span>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                    Jogar
+                                </button>
+                                <button class="btn-prizes">
+                                    <i class="fas fa-trophy"></i>
+                                    VER PRÊMIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raspadinha Mágica -->
+                    <div class="game-card" data-name="Jogo" data-price="1.00" data-image="images/raspadinha-magica.png">
+                        <div class="game-image">
+                            <img src="images/raspadinha-magica.png" alt="Raspadinha Mágica">
+                            <div class="game-badge">
+                                <span>ACHE 3 IGUAIS E GANHE NA HORA</span>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3>Raspadinha Mágica</h3>
+                            <p class="game-description">PRÊMIOS DE ATÉ R$ 30.000,00</p>
+                            <div class="game-price">
+                                <span class="price-label">Jogar</span>
+                                <span class="price-value">R$ 50,00</span>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                    Jogar
+                                </button>
+                                <button class="btn-prizes">
+                                    <i class="fas fa-trophy"></i>
+                                    VER PRÊMIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raspe e Ganhe -->
+                    <div class="game-card" data-name="Jogo" data-price="1.00" data-image="images/raspe-e-ganhe.png">
+                        <div class="game-image">
+                            <img src="images/raspe-e-ganhe.png" alt="Raspe e Ganhe">
+                            <div class="game-badge">
+                                <span>ACHE 3 IGUAIS E GANHE NA HORA</span>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3>Raspe e Ganhe</h3>
+                            <p class="game-description">PRÊMIOS DE ATÉ R$ 60.000,00</p>
+                            <div class="game-price">
+                                <span class="price-label">Jogar</span>
+                                <span class="price-value">R$ 100,00</span>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                    Jogar
+                                </button>
+                                <button class="btn-prizes">
+                                    <i class="fas fa-trophy"></i>
+                                    VER PRÊMIOS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="footer-logo">
+                        <i class="fas fa-gem"></i>
+                        <span>Fortune Games</span>
+                        <p>© 2025 fortunegames.com. Todos os direitos reservados.</p>
+                        <p>Raspadinhas e outros jogos de azar são regulamentados e cobertos pela nossa licença de jogos. Jogue com responsabilidade.</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Regulamentos</h4>
+                            <a href="#">Jogo responsável</a>
+                            <a href="#">Política de Privacidade</a>
+                            <a href="#">Termos de Uso</a>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>Ajuda</h4>
+                            <a href="#">Perguntas Frequentes</a>
+                            <a href="#">Como Jogar</a>
+                            <a href="#">Suporte Técnico</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-certifications">
+                        <div class="cert-badge">
+                            <span>GCB</span>
+                        </div>
+                        <div class="cert-badge">
+                            <span>18+</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+    <!-- Modal de Jogo (Raspadinha) -->
+    <div id="gameModal" class="modal">
+      <div class="modal-content game-modal-content">
+        <span class="close">&times;</span>
+        <div class="game-modal-body">
+          <div class="game-left">
+            <div class="ticket-header">
+              <img id="gameImage" alt="Jogo" />
+              <div class="ticket-info">
+                <h3 id="gameTitle">Raspadinha</h3>
+                <p id="ticketPrice">Preço: R$ <span>0,00</span></p>
+              </div>
+            </div>
+            <canvas id="scratchCanvas" width="360" height="240"></canvas>
+            <div id="prizeReveal" class="prize-reveal">R$ 0,00</div>
+            <div class="game-controls">
+              <button id="buyPlayBtn" class="btn-buyplay"><i class="fas fa-ticket-alt"></i> Comprar & Jogar</button>
+              <button id="resetTicketBtn" class="btn-reset"><i class="fas fa-redo"></i> Novo Bilhete</button>
+            </div>
+          </div>
+          <div class="game-right">
+            <div class="wallet-box">
+              <h4>Saldo</h4>
+              <div class="wallet-line"><span>R$</span><span id="walletBalance">0,00</span></div>
+              <div class="wallet-actions">
+                <input type="number" id="topupAmount" min="1" step="1" placeholder="Adicionar (R$)" />
+                <button id="topupBtn" class="btn-topup">Adicionar</button>
+              </div>
+              <small>* Protótipo: saldo local (sem transação real).</small>
+            </div>
+            <div class="history-box">
+              <h4>Histórico</h4>
+              <ul id="historyList" class="history-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
